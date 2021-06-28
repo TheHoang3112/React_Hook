@@ -1,0 +1,16 @@
+.color-box {
+    $box-size: 200px;
+
+    width: $box-size;
+    height: $box-size;
+    border-radius: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s ease-in;
+}
