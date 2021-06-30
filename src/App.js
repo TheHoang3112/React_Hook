@@ -6,6 +6,8 @@ import TodoForm from './components/TodoForm';
 import PostList from './components/PostList';
 import Pagination from './components/Pagination';
 import queryString from 'query-string';
+import PostFilterForm from './components/PostFilterForm';
+import Clock from './components/CLock';
 
 function App() {
   const [todoList, setTodoList] = useState([
@@ -72,15 +74,27 @@ function App() {
     newTodoList.push(newTodo);
     setTodoList(newTodoList);
   }
+  const handleFilterChange = (newFilters) => {
+    console.log('New Filter: ', newFilters);
+    setFilters({
+      ...filters,
+      _page: 1,
+      title_like: newFilters.searchTerm,
+    })
+  }
+  const [showClock, setShowClock] = useState(true);
   return (
     <div className="app">
       <h1>Learn Hook Basic ss</h1>
+      {showClock && <Clock />}
+      <button onClick={() => setShowClock(false)}>Hide Clock</button>
       <h2>Color Box Change</h2>
       <ColorBox />
       <h2>Render TodoList</h2>
       <TodoForm onSubmit={handleTodoFormSubmit} />
       <TodoList todos={todoList} onTodoClick={handleClick} />
       <h2>Render PostList form API</h2>
+      <PostFilterForm onSubmit={handleFilterChange} />
       <PostList posts={postList} />
       <Pagination
         pagination={pagination}
